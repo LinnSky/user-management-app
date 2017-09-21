@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h1>Edit User</h1>
+</div>
+<a href="#/users">Go Back</a>
+	<form ng-submit="updateUser()" ng-init="getUser()" name="myForm">
+	  <div class="form-group">
+	    <label>First Name</label>
+	    <input type="text" class="form-control" name="firstName" ng-model="user.firstName" placeholder="First Name" required>
+	    <span style="color:red" ng-show="myForm.firstName.$dirty && myForm.firstName.$invalid">
+			<span ng-show="myForm.firstName.$error.required">First Name is required.</span>
+		</span>
+	  </div>
+	  <div class="form-group">
+	    <label>Last Name</label>
+	    <input type="text" class="form-control" name="lastName" ng-model="user.lastName" placeholder="Last Name">
+	    <span style="color:red" ng-show="myForm.lastName.$dirty && myForm.lastName.$invalid">
+			<span ng-show="myForm.lastName.$error.required">Last Name is required</span>
+		</span>
+	  </div>
+	  <div class="form-group">
+	    <label>Title</label>
+	    <input type="text" class="form-control" name="title" ng-model="user.title" placeholder="Title">
+	    <span style="color:red" ng-show="myForm.title.$dirty && myForm.title.$invalid">
+			<span ng-show="myForm.title.$error.required">Title is required</span>
+		</span>
+	  </div>
+	  <div class="form-group">
+	    <label>Sex</label>
+	    	<select ng-model="user.sex" name="sex" class="form-control" required>
+		    	<option value="">-- Select Sex --</option>
+		    	<option value="Male">Male</option>
+		    	<option value="Female">Female</option>
+		    </select>
+	    <span style="color:red" class="error" ng-show="myForm.sex.$error.required">Sex is required</span>
+	  </div>
+	  <div class="form-group">
+	    <label>Age</label>
+	    <input type="number" class="form-control" name="age" ng-model="user.age" placeholder="Age" ng-pattern="/^[0-9]+$/" max='120' required>
+	    <span style="color:red" ng-show="myForm.age.$dirty && myForm.age.$invalid">
+			<span ng-show="myForm.age.$error.required">Age is required</span>
+			<span ng-show="myForm.age.$error.pattern">Input valid number</span>
+			<span ng-show="myForm.age.$error.max || myForm.age.$error.max">Age range is between 0 to 120</span>
+		</span>
+	  </div>
+	 
+	  <button type="submittt" class="btn btn-success">Submit</button>
+	  <a class="btn btn-danger" ng-click="removeUser(user)" href="#/users"><i class="fa fa-trash-o fa-lg"></i>Delete</a>
+	</form>

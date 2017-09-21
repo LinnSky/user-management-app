@@ -1,0 +1,52 @@
+<div class="page-header" ng-init="getUsers()">
+  <h1>Users</h1>
+</div>
+<form class="form-inline">
+  <div class="form-group"> 
+    <label>Search</label>
+    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+  </div>
+</form>
+<div class="row">
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Edit</th>
+          <th ng-click="sort('firstName')">First Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='firstName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th ng-click="sort('lastName')">Last Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='lastName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th ng-click="sort('title')">Title
+                <span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th ng-click="sort('sex')">Sex
+                <span class="glyphicon sort-icon" ng-show="sortKey=='sex'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th ng-click="sort('age')">Age
+                <span class="glyphicon sort-icon" ng-show="sortKey=='age'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr dir-paginate="user in users | itemsPerPage:4 | filter:search | orderBy:sortKey:reverse">
+          <td><i class="fa fa-pencil-square-o"></i><a href="#/users/edit/{{ user._id }}">Edit</a></td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.title }}</td>
+          <td>{{ user.sex }}</td>
+          <td>{{ user.age }}</td>
+          <td><a ng-click="removeUser(user)" href="#/users"><i class="fa fa-trash"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<dir-pagination-controls></dir-pagination-controls>
+<br>
+
+<a class="btn btn-success" href="#/users/add">
+  <i class="fa fa-user fa-fw"></i>Add User</a>
